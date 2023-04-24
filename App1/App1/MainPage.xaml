@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App1.MainPage">
+
+    <StackLayout>
+        <!--<SearchBar TextChanged="SearchBar_TextChanged" TextColor="Blue" Placeholder="Szukaj samochodu" CancelButtonColor="blue"/>-->
+        <ListView x:Name="CarItemsListView" HasUnevenRows="true" ItemTapped="itemtap" ItemSelected="itemSelected" IsGroupingEnabled="True" GroupDisplayBinding="{Binding title}">
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Padding="10" WidthRequest="80" HeightRequest="50">
+                                <Image Source="{Binding img}" WidthRequest="70" HeightRequest="50" Aspect="Fill"/>
+                            </StackLayout>
+                            <StackLayout WidthRequest="200">
+                                <Label Text="{Binding title}" FontSize="20" TextColor="Orange" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.GroupHeaderTemplate>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Padding="10" WidthRequest="80" HeightRequest="50">
+                                <Image Source="{Binding Zdjecie}" WidthRequest="70" HeightRequest="50" Aspect="Fill"/>
+                            </StackLayout>
+                            <StackLayout WidthRequest="200">
+                                <Label Text="{Binding Nazwa}" FontSize="20"/>
+                                <Label Text="{Binding Rok}" FontSize="15"/>
+                            </StackLayout>
+                            <Button Text="Szczegóły" Clicked="Button_Clicked"/>
+                        </StackLayout>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="Szczegóły" Clicked="MenuItem_Details" CommandParameter="{Binding .}" IsDestructive="True"/>
+                            <MenuItem Text="Usun" Clicked="MenuItem_Delete" CommandParameter="{Binding .}" IsDestructive="True"/>
+                        </ViewCell.ContextActions>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
